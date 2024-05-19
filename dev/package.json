@@ -5,8 +5,11 @@
   "description": "BACKEND (REST API) for My ShareBag project",
   "info": "Set correct backend-target locations in the frontend Dev/Deploy environment(s).\nSelect the MySQL Database location for Online or Local DB in the environment(s).",
   "homepage": ".",
-  "betapage": ".",
-  "livepage": ".",
+  "sites": {
+     "alpha": "https://1home-v0.vercel.app",
+     "beta": "https://1home-v0-beta.vercel.app",
+     "live": "https://1home.wrightsdesk.com"
+   },
   "main": "index.js",
   "type": "module",
   "dependencies": {
@@ -63,5 +66,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "developer": {
+     "devTeam": "wrightsdesk",
+     "devLead": "Victor Wright",
+     "devEmail": "developer@wrightsdesk.com",
+     "devPhone": "+49 176 4677 4278",
+     "devAddr": "Germany",
+     "devUrl": "https://www.wrightsdesk.com",
+     "devSocial": {
+        "facebook": "https://www.facebook.com/victorwright.de",
+        "whatsapp": "https://wa.me/+4917646774278"
+     }
   }
 }
