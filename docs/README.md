@@ -33,5 +33,5 @@
 Developer:   Victor Wright
 Project:     My ShareBag
 Date:        May 2024
-GH Page:     <a href="https://vrw-gh.github.io/mysharebag-backend/">vrw-gh.github.io/mysharebag-backend</a>
+Links:       <small><a href="https://vrw-gh.github.io/mysharebag-backend/">GH Page</a>&emsp;•&emsp;<a href="https://github.com/vrw-GH/mysharebag-backend">GH Repo</a>&emsp;•&emsp;<a href="https://vrw-gh.github.io/mysharebag/">Frontend: My Sharebag</a></small>
 </pre>
