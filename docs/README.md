@@ -13,6 +13,8 @@
 
 ## <i>Deployments:</i>
 
+[![Action Publish Jekyll-GH-PAGE](https://github.com/vrw-GH/mysharebag-backend/actions/workflows/jekyll-gh-pages.yml/badge.svg)](https://github.com/vrw-GH/mysharebag-backend/actions/workflows/jekyll-gh-pages.yml)
+
 <h4><u>V2</u></h4>
 <h3>- Backend:</h3>
 
