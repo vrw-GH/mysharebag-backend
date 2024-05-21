@@ -1,6 +1,6 @@
 // --------  SELECT A DATABASE FROM HERE ----
-import { queryDB, changeDB, deleteDB } from "../db/db-pg.js";
-// import { queryDB, changeDB, deleteDB } from "../db/db-mysql.js";
+// import { queryDB, changeDB, deleteDB } from "../db/db-pg.js";
+import { queryDB, changeDB, deleteDB } from "../db/db-mysql.js";
 
 // ------ fields list  ---------
 // ["postal-code", true, false], //char(20)
