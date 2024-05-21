@@ -1,48 +1,23 @@
 import express from "express";
 import cors from "cors";
-import fs from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// ------------ CONFIGURE -----------
-import "./src/utils/config.cjs";
-const packageJSON = JSON.parse(fs.readFileSync("./package.json"));
-const APPDATA = {
-  TITLE: packageJSON.name || "Node.js Project",
-  NAME:
-    packageJSON.name
-      .replace(/-/g, " ")
-      .replace(/(^\w{1})|(\s+\w{1})/g, (chr) => chr.toUpperCase()) || "",
-  VER: "v" + packageJSON.version || "0.1",
-  INFO: packageJSON.info || "",
-  DESCR: packageJSON.description || "new project",
-  DEVTEAM: process.env.NODE_APP_DEV_TEAM || "",
-  TEAMWEB: process.env.NODE_APP_DEV_TEAMWEB || "",
-  DEVLEAD: process.env.NODE_APP_DEV_LEAD || "Victor Wright",
-  LEADWEB: process.env.NODE_APP_DEV_LEADWEB || "https://vrw-gh.github.io/vrw-GH",  
-  EMAIL: process.env.NODE_APP_DEV_EMAIL || "victor.wright@outlook.de",
-  PHONE: process.env.NODE_APP_DEV_PHONE || "+4917646774278",
-  LOCATION: process.env.NODE_APP_DEV_ADDR || "83707, Germany",
-  FLIGHT: process.env.PROJECT_FLIGHT || "Dev.",  
-  WEBSITE: process.env.WEBDEPLOY || packageJSON.homepage || "http://127.0.0.1",
-  ROOT: __dirname || "/",
-  HOST: process.env.HOST || "http://127.0.0.1",
-  PORT: process.env.PORT || 5000,
-};
-
 // ------------ MODULES -----------
-import errorHandler from "./src/middlewares/errorHandler.js";
+import APPDATA from "./utils/APPDATA.js"; //% Load App Configs here
+import errorHandler from "./middlewares/errorHandler.js";
+
 // ------------ ROUTES -----------
-import baseRoute from "./src/routes/router0-indexpage.js";
-import recipesRouter from "./src/routes/router1-recipes.js";
-import usersRouter from "./src/routes/router2-users.js";
-import categoriesRouter from "./src/routes/router3-categories.js";
-import ingredientsRouter from "./src/routes/router4-ingredients.js";
-import shareitemsRouter from "./src/routes/router5-shareitems.js";
-import plzRouter from "./src/routes/router6-plz.js";
-import authRouter from "./src/routes/router-auth.js";
+import baseRoute from "./routes/router0-indexpage.js";
+import recipesRouter from "./routes/router1-recipes.js";
+import usersRouter from "./routes/router2-users.js";
+import categoriesRouter from "./routes/router3-categories.js";
+import ingredientsRouter from "./routes/router4-ingredients.js";
+import shareitemsRouter from "./routes/router5-shareitems.js";
+import plzRouter from "./routes/router6-plz.js";
+import authRouter from "./routes/router-auth.js";
 
 const APIendPoints = {
   route0: ["/", "Info Page", baseRoute], //props issue!!

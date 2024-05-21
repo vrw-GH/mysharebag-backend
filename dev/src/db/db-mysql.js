@@ -1,9 +1,8 @@
 import mysql from "mysql2"; //"mysql"
 import ErrorResponse from "../utils/errorResponse.js";
-import "../utils/config.cjs";
 
-const connectionString = process.env.NODE_APP_DB_MYSQL1;
-const conn = mysql.createConnection(connectionString);
+const connectionString = process.env.NODE_APP_DB1;
+const conn = mysql.createConnection("Mysql://vwDev:vwDev!7175@localhost/mydb");
 
 conn.connect((err) => {
   !err
@@ -19,8 +18,8 @@ export const queryDB = (sqlString, values) => {
         !error && results.length > 0
           ? resolve(results) //      returns one tuple
           : reject(
-              new ErrorResponse(error || Error("No results returned."), 404)
-            );
+            new ErrorResponse(error || Error("No results returned."), 404)
+          );
       });
     } else {
       conn.query(sqlString, (error, results) => {
