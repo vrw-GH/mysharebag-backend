@@ -1,0 +1,58 @@
+<%- include("_header.ejs") %>
+  <h2>- API -</h2>
+  <h3 style="color: red; margin-bottom: 0;"><i> ♦ General API routes: </i></h3>
+  <table width="96%">
+    <tr style="vertical-align: top">
+      <td width="40%">
+        <ul>
+          <li>
+            <a href=<%=`${APIendPoints.route0[0]}` %>
+              title=<%= `${APIendPoints.route0[0]}` %>
+                target="_self">
+                <%- `${APIendPoints.route0[1]}` %>
+            </a>
+          </li>
+          <% Object.keys(APIendPoints).forEach((ep)=>{ %> <% if (ep !="route0" ) { %>
+              <li>
+                <a href=<%=`${APIendPoints[ep][0]}` %>
+                  title=<%=`${APIendPoints[ep][0]}` %>
+                    target="jsonresponse">
+                    <%- `${APIendPoints[ep][1]}` %>
+                </a>
+              </li>
+              <% } %>
+                <% }); %>
+        </ul>
+      </td>
+      <td>
+        Test response area:
+        <iframe name="jsonresponse" width="100%" height="40%" style="margin:0rem; background-color: aliceblue;"
+          srcdoc="<html><body> test here </body></html>"></iframe>
+      </td>
+    </tr>
+  </table>
+
+  <details>
+    <summary>Click here for JSON response format :
+
+    </summary>
+    <textarea style="margin: 2px 20px; width: calc( 100% - 50px);height: 8rem;" disabled>
+      {
+         "info": {
+            "result":true,                         // or false -- for error condition
+            "message":"All users list.",           // will show specific info
+            "records":9   (or System error info)   // additional info
+         },
+         "tuples": [                               // if any tuples returned
+            {"field":"data","field2":"data2"   etc... },
+            {"field":"data","field2":"data2"   etc... }
+         ]
+      }
+   </textarea>
+  </details>
+  <h3 style="color: red"><i> ♦ Special Routes : </i></h3>
+  <ul>
+    <li><a href="./auth" title="/auth" target="_self">Authentication</a></li>
+  </ul>
+  <p></p>
+  <%- include("_footer.ejs") %>

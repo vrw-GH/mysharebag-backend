@@ -17,7 +17,7 @@ const errorHandler = (err, req, res, next) => {
       // err.message = No change;
       break;
   }
-  if (errorHandler.MODE.substring(0, 3).toUpperCase() === "DEV") {
+  if (process.env.NODE_ENV.substring(0, 3).toUpperCase() === "DEV") {
     console.log("\n### Error-handler: ---------------- ***");
     console.log("    Origin-code: ", err.code);
     console.log("    Origin-message: ", err.message);

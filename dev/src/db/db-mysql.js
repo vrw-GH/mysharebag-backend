@@ -1,12 +1,18 @@
 import mysql from "mysql2"; //"mysql"
 import ErrorResponse from "../utils/errorResponse.js";
 
-const connectionString = process.env.NODE_APP_DB1;
-const conn = mysql.createConnection("Mysql://vwDev:vwDev!7175@localhost/mydb");
+const cxStr = process.env.NODE_APP_DB1;
+let connectionString = cxStr.split("//");
+const conn = mysql.createConnection({
+  user: connectionString[1],
+  password: connectionString[2],
+  host: connectionString[3],
+  database: connectionString[4],
+});
 
 conn.connect((err) => {
   !err
-    ? console.info(`- DB:     MySQL server.\n`)
+    ? console.info(`- DB:      MySQL server (${connectionString[3]}/${connectionString[4]})\n`)
     : new ErrorResponse(err, 503);
 });
 
