@@ -1,9 +1,11 @@
 import express from "express";
 import cors from "cors";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import path, { dirname, join } from "path";
+// import { fileURLToPath } from "url";
+// const __dirname = dirname(fileURLToPath(import.meta.url));
+// const __dirname = path.resolve(import.meta.dirname);
+global.__appRoot = path.resolve(import.meta.dirname);
+// console.log("test:" + global.__appRoot);
 
 // ------------ MODULES -----------
 import APPDATA from "./utils/APPDATA.js"; //% Load App Configs here
@@ -35,7 +37,10 @@ baseRoute.APIendPoints = APIendPoints;
 authRouter.appData = APPDATA;
 
 // ------------ MAIN APP -----------
+APPDATA.ROOT = global.__appRoot || "/";
 const app = express();
+// app.set('views', path.join(__dirname, '/views'));
+// app.set('views', __dirname + '/views');
 app.set("view engine", "ejs"); // looks in root/views folder
 app.use(express.json());
 const origin = "*"; // {origin: [host, "http://127.0.0.1", "https://abul.db.elephantsql.com/"],}
@@ -45,8 +50,8 @@ app.use(
     optionsSuccessStatus: 200, // some legacy browsers
   })
 );
-app.use("/uploads", express.static(join(__dirname, "/public/uploads"))); // for serving something (mutler?)
-app.use("/public", express.static(join(__dirname, "/public")));
+app.use("/uploads", express.static(join(APPDATA.ROOT, "/public/uploads"))); // for serving something (mutler?)
+app.use("/public", express.static(join(APPDATA.ROOT, "/public")));
 
 // ----------- iterate all routers  ----
 for (let index = 0; index < Object.keys(APIendPoints).length; index++) {
@@ -65,8 +70,9 @@ errorHandler.FLIGHT = APPDATA.FLIGHT;
 app.use(errorHandler);
 
 // ----------- Activate server!  ----
-app.listen(APPDATA.PORT, () =>
+app.listen(APPDATA.PORT, () => {
   console.info(
-    `\n${APPDATA.NAME}: \n- Server: ${APPDATA.HOST}:${APPDATA.PORT}\n- Root: ${APPDATA.ROOT}\n- Website: ${APPDATA.WEBSITE} \n- Flight: ${APPDATA.FLIGHT}/Env:${process.env.NODE_ENV}`
+    `\n${APPDATA.NAME.toUpperCase()} (listening...): \n- Server:  ${APPDATA.HOST}:${APPDATA.PORT}\n- Root:    ${APPDATA.ROOT}\n- Website: ${APPDATA.WEBSITE} \n- Flight:  ${APPDATA.FLIGHT}(Env:${process.env.NODE_ENV.substring(0, 3).toUpperCase()})`
   )
+}
 );
