@@ -27,7 +27,7 @@
       <td>
         Test response area:
         <iframe name="jsonresponse" width="100%" height="40%" style="margin:0rem; background-color: aliceblue;"
-          srcdoc="<html><body> test here </body></html>"></iframe>
+          srcdoc="<html><body> Select a route to display live result here </body></html>"></iframe>
       </td>
     </tr>
   </table>
@@ -38,12 +38,14 @@
     </summary>
     <textarea style="margin: 2px 20px; width: calc( 100% - 50px);height: 8rem;" disabled>
       {
-         "info": {
+         "info": 
+         {
             "result":true,                         // or false -- for error condition
             "message":"All users list.",           // will show specific info
             "records":9   (or System error info)   // additional info
          },
-         "tuples": [                               // if any tuples returned
+         "tuples":                                 // if any tuples returned
+         [
             {"field":"data","field2":"data2"   etc... },
             {"field":"data","field2":"data2"   etc... }
          ]

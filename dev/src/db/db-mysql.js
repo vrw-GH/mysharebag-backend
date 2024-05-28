@@ -2,19 +2,20 @@ import mysql from "mysql2"; //"mysql"
 import ErrorResponse from "../utils/errorResponse.js";
 
 const cxStr = process.env.NODE_APP_DB1;
-// protocol//vwDev:vwDev!7175//localhost://mysharebag
+// protocol://user:pwd//host:port//database
 const connectionString = cxStr.split("//");
 const conn = mysql.createConnection({
   user: connectionString[1].split(":")[0],
   password: connectionString[1].split(":")[1],
-  host: connectionString[2],
+  host: connectionString[2], // may include :port - set in .env
   database: connectionString[3],
 });
 
 conn.connect((err) => {
+  // console.log(err ? "Cnx:" + connectionString : "");
   !err
-    ? console.info(`- DB:      ${connectionString[0]} (${connectionString[2]}/${connectionString[3]})\n`)
-    : new ErrorResponse(err, 503);
+    ? console.info(`- DB:      ${connectionString[0]} ${connectionString[2]}/${connectionString[3]}\n`)
+    : new ErrorResponse(err.code + " / " + err.errors, 503);
 });
 
 // mysql package doesnt work with async, so we have to leverage nodepromises
